@@ -97,3 +97,63 @@ if (screenSize <= 992) {
     { scale: 1.1, duration: 2 }
   );
 }
+
+
+// Cost estimator calculations
+
+const multiplierInputs = document.querySelectorAll('#multiplierInput');
+const dollarInputs = document.querySelectorAll('#dollarInput');
+const calculateButton = document.querySelector("#calculateEstimate");
+
+function calculateTotal() {
+  let multiplierTotal = 1;
+  let dollarTotal = 0;
+
+  multiplierInputs.forEach((multiplierInput) => {
+    if (multiplierInput.checked) {
+      multiplierTotal *= parseFloat(multiplierInput.value);
+      console.log(multiplierTotal);
+    }
+  });
+
+  dollarInputs.forEach((dollarInput) => {
+    if (dollarInput.checked) {
+      dollarTotal += parseFloat(dollarInput.value);
+      console.log(dollarTotal);
+    }
+  });
+
+  let total = multiplierTotal * dollarTotal;
+  total = Math.round(total);
+
+  // Format the total with commas for currency display
+  total = parseFloat(total).toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  });
+
+  document.getElementById("total").innerText = total;
+}
+
+calculateButton.addEventListener("click", calculateTotal);
+
+var screenSize = document.documentElement.clientWidth || window.innerWidth;
+
+if (screenSize <= 992) {
+
+} else {
+
+  var pos = document.querySelector(".bg-wrapper");
+  var areaExpansion = 400; // Adjust this value to increase/decrease the area
+
+  pos.addEventListener('mousemove', e => {
+    var newX = e.clientX + areaExpansion; // Expand area to the left
+    var newY = e.clientY + areaExpansion; // Expand area to the top
+
+    pos.style.setProperty('--x', newX + 'px');
+    pos.style.setProperty('--y', newY + 'px');
+
+  });
+
+}
+
