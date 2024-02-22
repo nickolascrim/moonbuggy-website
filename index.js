@@ -65,7 +65,7 @@ if (screenSize <= 992) {
   t4.fromTo(
     ".services-offering_item",
     { opacity: 0 },
-    { opacity: 100, stagger: 0.5, duration: 2, ease: "power1.in" }
+    { opacity: 100, stagger: 0.5, duration: 1, ease: "power1.in" }
   );
 
   let t5 = gsap.timeline({
